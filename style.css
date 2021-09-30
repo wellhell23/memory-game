@@ -1,7 +1,13 @@
+* {
+	margin: 0;
+	padding: 0;
+}
 body {
 	background-image: url("./memoryGamebg1.jpg");
 	background-repeat: repeat;
 	background-size: cover;
+	height: 100vh;
+	margin: 0;
 }
 .lableDiv {
 	/* margin: 20px; */
@@ -37,7 +43,7 @@ main {
 	flex-direction: column;
 	/* justify-content: center; */
 	align-items: center;
-	height: 100vh;
+	/* height: 100vh; */
 }
 #game {
 	margin-top: 20px;
@@ -62,18 +68,18 @@ main {
 	font-size: 20px;
 	margin-top: 20px;
 	background-color: yellowgreen;
-	padding: 4px;
+	/* padding: 4px; */
 }
 #game div {
 	/* display: none; */
 
 	border: 5px solid green;
 	width: 15%;
-	height: 200px;
-	width: 150px;
+	height: 15vw;
+	width: 10vw;
 	margin: 10px;
 	display: inline-block;
-	background-color: transparent;
+	background-color: cyan;
 	transition: 1000ms ease-in-out;
 }
 
