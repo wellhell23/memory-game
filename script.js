@@ -69,7 +69,7 @@ function handleCardClick(event) {
 
   if (clickCount < 2 && preClass != event.target) {
     // console.log("you clicked", event.target, preClass);
-    // event.target.classList.toggle("rotate");
+    event.target.classList.toggle("rotate");
     minMoves++;
     let moves = document.querySelector(".moves");
     moves.innerHTML = "Moves= " + minMoves;
@@ -169,20 +169,20 @@ startButton.addEventListener('click', function (event) {
   else {
     checkLevel = "3";
     COLORS = [
-      "1.gif",
-      "2.gif",
-      "3.gif",
-      "4.gif",
-      "5.gif",
-      "6.gif",
-      "7.gif",
-      "1.gif",
-      "2.gif",
-      "3.gif",
-      "4.gif",
-      "5.gif",
-      "6.gif",
-      "7.gif",];
+      "./gifs/1.gif",
+      "./gifs/2.gif",
+      "./gifs/3.gif",
+      "./gifs/4.gif",
+      "./gifs/5.gif",
+      "./gifs/6.gif",
+      "./gifs/7.gif",
+      "./gifs/1.gif",
+      "./gifs/2.gif",
+      "./gifs/3.gif",
+      "./gifs/4.gif",
+      "./gifs/5.gif",
+      "./gifs/6.gif",
+      "./gifs/7.gif",];
   }
   mainPageContent.style.display = "none";
   game.style.display = "flex";
