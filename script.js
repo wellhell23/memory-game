@@ -1,12 +1,18 @@
 const gameContainer = document.getElementById("game");
-
+let checkLevel;
 let COLORS = [
-  "red",
-  "blue",
-  "green",
-  "red",
-  "blue",
-  "green",
+  "1.gif",
+  "2.gif",
+  "3.gif",
+  "4.gif",
+  "5.gif",
+  "6.gif",
+  "7.gif",
+  "8.gif",
+  "9.gif",
+  "10.gif",
+  "11.gif",
+  "12.gif",
 ];
 
 // here is a helper function to shuffle an array
@@ -62,27 +68,31 @@ function handleCardClick(event) {
   // you can use event.target to see which element was clicked  
 
   if (clickCount < 2 && preClass != event.target) {
-    console.log("you clicked", event.target, preClass);
-    event.target.classList.toggle("rotate");
+    // console.log("you clicked", event.target, preClass);
+    // event.target.classList.toggle("rotate");
     minMoves++;
     let moves = document.querySelector(".moves");
     moves.innerHTML = "Moves= " + minMoves;
+    console.log(event.target.className.split(" ")[0]);
     if (!preClass) {
       // if (!event.target.style.backgroundColor || event.target.style.backgroundColor == "white") {
       preClass = event.target;
       console.log(event.target.className.split(" ")[0]);
-      event.target.style.backgroundColor = event.target.className.split(" ")[0];
+      event.target.style.backgroundImage = `url("${event.target.className.split(" ")[0]}")`;
+      event.target.style.backgroundSize = "cover";
       clickCount += 1;
       // }
     }
     else if (preClass.className.split(" ")[0] == event.target.className.split(" ")[0]) {
-      event.target.style.backgroundColor = event.target.className.split(" ")[0];
+      event.target.style.backgroundImage = `url("${event.target.className.split(" ")[0]}")`;
+      event.target.style.backgroundSize = "cover";
+
       clickCount = 0;
       colorArray.push(event.target.className);
       event.target.removeEventListener("click", handleCardClick);
       preClass.removeEventListener("click", handleCardClick);
       preClass = null;
-      if (colorArray.length == 5) {
+      if ((colorArray.length == 3 && checkLevel == "1") || (colorArray.length == 5 && checkLevel == "2") || (colorArray.length == 7 && checkLevel == "3")) {
         console.log(colorArray);
         let winner = document.querySelector("#winner");
         winner.style.display = "block";
@@ -108,11 +118,13 @@ function handleCardClick(event) {
 
     }
     else {
-      event.target.style.backgroundColor = event.target.className.split(" ")[0];
+      event.target.style.backgroundImage = `url("${event.target.className.split(" ")[0]}")`;
       clickCount += 1;
       setTimeout(() => {
-        event.target.style.backgroundColor = "white";
-        preClass.style.backgroundColor = "white";
+        event.target.style.backgroundImage = "none";
+        preClass.style.backgroundImage = "none";
+        event.target.style.backgroundColor = "cyan";
+        preClass.style.backgroundColor = "cyan";
         preClass = null;
         clickCount = 0;
       }, 1000);
@@ -130,44 +142,47 @@ startButton.addEventListener('click', function (event) {
   let levels = document.getElementById("levels");
 
   if (levels.value === "1") {
+    checkLevel = "1";
     COLORS = [
-      "red",
-      "blue",
-      "green",
-      "red",
-      "blue",
-      "green",
+      "./gifs/1.gif",
+      "./gifs/2.gif",
+      "./gifs/3.gif",
+      "./gifs/1.gif",
+      "./gifs/2.gif",
+      "./gifs/3.gif",
     ];
   }
   else if (levels.value === "2") {
+    checkLevel = "2";
     COLORS = [
-      "red",
-      "blue",
-      "green",
-      "orange",
-      "purple",
-      "red",
-      "blue",
-      "green",
-      "orange",
-      "purple"];
+      "./gifs/1.gif",
+      "./gifs/2.gif",
+      "./gifs/3.gif",
+      "./gifs/4.gif",
+      "./gifs/5.gif",
+      "./gifs/1.gif",
+      "./gifs/2.gif",
+      "./gifs/3.gif",
+      "./gifs/4.gif",
+      "./gifs/5.gif",];
   }
   else {
+    checkLevel = "3";
     COLORS = [
-      "red",
-      "blue",
-      "green",
-      "orange",
-      "purple",
-      "yellow",
-      "greenyellow",
-      "red",
-      "blue",
-      "green",
-      "orange",
-      "purple",
-      "yellow",
-      "greenyellow"];
+      "1.gif",
+      "2.gif",
+      "3.gif",
+      "4.gif",
+      "5.gif",
+      "6.gif",
+      "7.gif",
+      "1.gif",
+      "2.gif",
+      "3.gif",
+      "4.gif",
+      "5.gif",
+      "6.gif",
+      "7.gif",];
   }
   mainPageContent.style.display = "none";
   game.style.display = "flex";
@@ -176,7 +191,6 @@ startButton.addEventListener('click', function (event) {
   restartButton.style.display = "block";
   restartButton.addEventListener("click", restartButtonClick);
   let shuffledColors = shuffle(COLORS);
-
   createDivsForColors(shuffledColors);
 });
 
