@@ -92,7 +92,7 @@ function handleCardClick(event) {
       event.target.removeEventListener("click", handleCardClick);
       preClass.removeEventListener("click", handleCardClick);
       preClass = null;
-      if ((colorArray.length == 3 && checkLevel == "1") || (colorArray.length == 5 && checkLevel == "2") || (colorArray.length == 7 && checkLevel == "3")) {
+      if ((colorArray.length == 3 && checkLevel == "1") || (colorArray.length == 4 && checkLevel == "2") || (colorArray.length == 8 && checkLevel == "3")) {
         console.log(colorArray);
         let winner = document.querySelector("#winner");
         winner.style.display = "block";
@@ -123,8 +123,8 @@ function handleCardClick(event) {
       setTimeout(() => {
         event.target.style.backgroundImage = "none";
         preClass.style.backgroundImage = "none";
-        event.target.style.backgroundColor = "cyan";
-        preClass.style.backgroundColor = "cyan";
+        event.target.style.backgroundImage = "linear-gradient(to right bottom, violet, blue, white)";
+        preClass.style.backgroundImage = "linear-gradient(to right bottom, violet, blue, white)";
         preClass = null;
         clickCount = 0;
       }, 1000);
@@ -159,12 +159,11 @@ startButton.addEventListener('click', function (event) {
       "./gifs/2.gif",
       "./gifs/3.gif",
       "./gifs/4.gif",
-      "./gifs/5.gif",
       "./gifs/1.gif",
       "./gifs/2.gif",
       "./gifs/3.gif",
       "./gifs/4.gif",
-      "./gifs/5.gif",];
+    ];
   }
   else {
     checkLevel = "3";
@@ -176,13 +175,15 @@ startButton.addEventListener('click', function (event) {
       "./gifs/5.gif",
       "./gifs/6.gif",
       "./gifs/7.gif",
+      "./gifs/8.gif",
       "./gifs/1.gif",
       "./gifs/2.gif",
       "./gifs/3.gif",
       "./gifs/4.gif",
       "./gifs/5.gif",
       "./gifs/6.gif",
-      "./gifs/7.gif",];
+      "./gifs/7.gif",
+      "./gifs/8.gif"];
   }
   mainPageContent.style.display = "none";
   game.style.display = "flex";
@@ -195,7 +196,7 @@ startButton.addEventListener('click', function (event) {
 });
 
 function restartButtonClick(event) {
-  if ((colorArray.length == 3 && checkLevel == "1") || (colorArray.length == 5 && checkLevel == "2") || (colorArray.length == 7 && checkLevel == "3")) {
+  if ((colorArray.length == 3 && checkLevel == "1") || (colorArray.length == 4 && checkLevel == "2") || (colorArray.length == 8 && checkLevel == "3")) {
     location.reload();
   }
 }

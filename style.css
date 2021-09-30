@@ -6,6 +6,7 @@ body {
 	background-image: url("./memoryGamebg1.jpg");
 	background-repeat: repeat;
 	background-size: cover;
+	font-family: "Oswald", sans-serif;
 	height: 100vh;
 	margin: 0;
 }
@@ -41,7 +42,7 @@ h1 {
 main {
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
+	justify-content: center;
 	align-items: center;
 	/* height: 100vh; */
 }
@@ -61,7 +62,7 @@ main {
 	transform: rotateY(180deg);
 }
 .moves {
-	height: 20px;
+	/* height: 20px; */
 	width: 100vw;
 	display: none;
 	text-align: center;
@@ -75,11 +76,11 @@ main {
 
 	border: 5px solid green;
 	width: 15%;
-	height: 15vw;
+	height: 12vw;
 	width: 10vw;
 	margin: 10px;
 	display: inline-block;
-	background-color: cyan;
+	background-image: linear-gradient(to right bottom, violet, blue, white);
 	transition: 1000ms ease-in-out;
 }
 
@@ -123,4 +124,20 @@ main {
 	color: blue;
 	background-color: chartreuse;
 	align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+	#game div {
+		width: 15vw;
+		height: 20vw;
+	}
+	#winner {
+		position: absolute;
+		font-size: 10px;
+		transform: scale(4);
+		background-color: cyan;
+		z-index: 1;
+		padding: 2px;
+		box-shadow: 1px 1px;
+	}
 }
