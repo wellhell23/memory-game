@@ -13,6 +13,25 @@ const COLORS = [
   "purple"
 ];
 
+let startButton = document.querySelector("#startButton");
+startButton.addEventListener('click', function (event) {
+  let mainPageContent = document.querySelector("#mainPageContent");
+  let game = document.querySelector("#game");
+  let moves = document.querySelector(".moves");
+  let restartButton = document.querySelector("#restartButton");
+  mainPageContent.style.display = "none";
+  game.style.display = "flex";
+  moves.style.display = "block";
+  moves.innerHTML = "Moves=0";
+  restartButton.style.display = "block";
+  restartButton.addEventListener("click", restartButtonClick);
+});
+
+function restartButtonClick(event) {
+  if (colorArray.length == 5) {
+    location.reload();
+  }
+}
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
 // it is based on an algorithm called Fisher Yates if you want ot research more
@@ -61,34 +80,43 @@ function createDivsForColors(colorArray) {
 let preClass = null;
 let colorArray = [];
 let clickCount = 0;
-
+let minMoves = 0;
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked  
 
   if (clickCount < 2 && preClass != event.target) {
     console.log("you clicked", event.target, preClass);
+    event.target.classList.toggle("rotate");
+    minMoves++;
+    let moves = document.querySelector(".moves");
+    moves.innerHTML = "Moves= " + minMoves;
     if (!preClass) {
       // if (!event.target.style.backgroundColor || event.target.style.backgroundColor == "white") {
       preClass = event.target;
-      event.target.style.backgroundColor = event.target.className;
+      console.log(event.target.className.split(" ")[0]);
+      event.target.style.backgroundColor = event.target.className.split(" ")[0];
       clickCount += 1;
       // }
     }
-    else if (preClass.className == event.target.className) {
-      event.target.style.backgroundColor = event.target.className;
+    else if (preClass.className.split(" ")[0] == event.target.className.split(" ")[0]) {
+      event.target.style.backgroundColor = event.target.className.split(" ")[0];
       clickCount = 0;
       colorArray.push(event.target.className);
       event.target.removeEventListener("click", handleCardClick);
       preClass.removeEventListener("click", handleCardClick);
       preClass = null;
+      if (colorArray.length == 5) {
+        console.log(colorArray);
+        let winner = document.querySelector("#winner");
+        winner.style.display = "block";
+        winner.innerHTML = `Winner<br/> Your Score ` + minMoves;
+      }
 
     }
     else {
-      event.target.style.backgroundColor = event.target.className;
+      event.target.style.backgroundColor = event.target.className.split(" ")[0];
       clickCount += 1;
       setTimeout(() => {
-        // console.log("inside else  1", preClass);
-
         event.target.style.backgroundColor = "white";
         preClass.style.backgroundColor = "white";
         preClass = null;
@@ -97,6 +125,7 @@ function handleCardClick(event) {
     }
   }
 }
+
 
 // when the DOM loads
 createDivsForColors(shuffledColors);
