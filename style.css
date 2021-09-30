@@ -3,9 +3,34 @@ body {
 	background-repeat: repeat;
 	background-size: cover;
 }
+.lableDiv {
+	/* margin: 20px; */
+	color: red;
+	background-color: green;
+	border-radius: 25%;
+	padding: 20px;
+	border: 2px solid greenyellow;
+}
+select {
+	/* display: none; */
+	/* position: absolute; */
+	background-color: #a1f37b5e;
+	min-width: 100px;
+	border: 2px solid rgba(66, 199, 88, 0.2);
+	border-radius: 5%;
+	font-size: 15px;
+	/*
+	box-shadow: 0px 8px 16px 0px rgba(66, 199, 88, 0.2);
+	z-index: 1; */
+}
+/* option {
+	background-color: #7ace725e;
+	te
+} */
 h1 {
 	color: springgreen;
 	text-align: center;
+	font-size: 50px;
 }
 main {
 	display: flex;
@@ -48,7 +73,7 @@ main {
 	width: 150px;
 	margin: 10px;
 	display: inline-block;
-	background-color: white;
+	background-color: transparent;
 	transition: 1000ms ease-in-out;
 }
 

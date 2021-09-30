@@ -1,37 +1,14 @@
 const gameContainer = document.getElementById("game");
 
-const COLORS = [
+let COLORS = [
   "red",
   "blue",
   "green",
-  "orange",
-  "purple",
   "red",
   "blue",
   "green",
-  "orange",
-  "purple"
 ];
 
-let startButton = document.querySelector("#startButton");
-startButton.addEventListener('click', function (event) {
-  let mainPageContent = document.querySelector("#mainPageContent");
-  let game = document.querySelector("#game");
-  let moves = document.querySelector(".moves");
-  let restartButton = document.querySelector("#restartButton");
-  mainPageContent.style.display = "none";
-  game.style.display = "flex";
-  moves.style.display = "block";
-  moves.innerHTML = "Moves=0";
-  restartButton.style.display = "block";
-  restartButton.addEventListener("click", restartButtonClick);
-});
-
-function restartButtonClick(event) {
-  if (colorArray.length == 5) {
-    location.reload();
-  }
-}
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
 // it is based on an algorithm called Fisher Yates if you want ot research more
@@ -55,7 +32,7 @@ function shuffle(array) {
   return array;
 }
 
-let shuffledColors = shuffle(COLORS);
+// let shuffledColors = shuffle(COLORS);
 
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
@@ -109,7 +86,24 @@ function handleCardClick(event) {
         console.log(colorArray);
         let winner = document.querySelector("#winner");
         winner.style.display = "block";
-        winner.innerHTML = `Winner<br/> Your Score ` + minMoves;
+        winner.style["text-align"] = "center";
+        // winner.innerHTML = `Winner<br/> Your Score ` + minMoves + "<br/>Minimum Moves: " + minMoves;
+
+        if (!localStorage.getItem("BestMoves")) {
+          localStorage.setItem("BestMoves", minMoves);
+          winner.innerHTML = `Winner<br/> Your Score ` + minMoves + "<br/>Minimum Moves: " + minMoves;
+
+        }
+        else if (minMoves <= localStorage.getItem("BestMoves")) {
+          winner.innerHTML = `Winner<br/> Your Score ` + minMoves + "<br/>Minimum Moves: " + minMoves;
+
+          localStorage.setItem("BestMoves", minMoves);
+        }
+        else {
+          winner.innerHTML = `Winner<br/> Your Score ` + minMoves + "<br/>Minimum Moves: " + localStorage.getItem("BestMoves");
+
+        }
+
       }
 
     }
@@ -127,5 +121,70 @@ function handleCardClick(event) {
 }
 
 
+let startButton = document.querySelector("#startButton");
+startButton.addEventListener('click', function (event) {
+  let mainPageContent = document.querySelector("#mainPageContent");
+  let game = document.querySelector("#game");
+  let moves = document.querySelector(".moves");
+  let restartButton = document.querySelector("#restartButton");
+  let levels = document.getElementById("levels");
+
+  if (levels.value === "1") {
+    COLORS = [
+      "red",
+      "blue",
+      "green",
+      "red",
+      "blue",
+      "green",
+    ];
+  }
+  else if (levels.value === "2") {
+    COLORS = [
+      "red",
+      "blue",
+      "green",
+      "orange",
+      "purple",
+      "red",
+      "blue",
+      "green",
+      "orange",
+      "purple"];
+  }
+  else {
+    COLORS = [
+      "red",
+      "blue",
+      "green",
+      "orange",
+      "purple",
+      "yellow",
+      "greenyellow",
+      "red",
+      "blue",
+      "green",
+      "orange",
+      "purple",
+      "yellow",
+      "greenyellow"];
+  }
+  mainPageContent.style.display = "none";
+  game.style.display = "flex";
+  moves.style.display = "block";
+  moves.innerHTML = "Moves=0";
+  restartButton.style.display = "block";
+  restartButton.addEventListener("click", restartButtonClick);
+  let shuffledColors = shuffle(COLORS);
+
+  createDivsForColors(shuffledColors);
+});
+
+function restartButtonClick(event) {
+  if (colorArray.length == 5) {
+    location.reload();
+  }
+}
+
 // when the DOM loads
-createDivsForColors(shuffledColors);
+
