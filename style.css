@@ -108,7 +108,7 @@ main {
 }
 #winner {
 	display: none;
-	color: blueviolet;
+	color: white;
 	font-size: 50px;
 }
 #restartButton {
