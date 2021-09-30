@@ -195,7 +195,7 @@ startButton.addEventListener('click', function (event) {
 });
 
 function restartButtonClick(event) {
-  if (colorArray.length == 5) {
+  if ((colorArray.length == 3 && checkLevel == "1") || (colorArray.length == 5 && checkLevel == "2") || (colorArray.length == 7 && checkLevel == "3")) {
     location.reload();
   }
 }
