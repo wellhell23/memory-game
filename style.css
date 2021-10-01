@@ -22,7 +22,7 @@ body {
 	);
 	border-radius: 25%;
 	padding: 20px;
-	border: 2px solid blue;
+	/* border: 2px solid blue; */
 }
 select {
 	/* display: none; */
@@ -36,7 +36,7 @@ select {
 		rgb(8, 8, 161)
 	);
 	min-width: 100px;
-	border: 2px solid blue;
+	/* border: 2px solid blue; */
 	border-radius: 5%;
 	font-size: 15px;
 	/*
@@ -114,7 +114,7 @@ main {
 #game div {
 	/* display: none; */
 
-	border: 5px solid blue;
+	/* border: 5px solid blue; */
 	width: 15%;
 	height: 12vw;
 	width: 10vw;
